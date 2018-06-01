@@ -8,8 +8,8 @@ let create = async () => {
 
   if (!fs.existsSync(dir)) {
     try {
-      fs.mkdirSync(`${__dirname}/${dir}`)
-      fs.writeFile(`${__dirname}/${dir}/config.json`,
+      fs.mkdirSync(`${process.cwd()}/${dir}`)
+      fs.writeFile(`${process.cwd()}/${dir}/config.json`,
         JSON.stringify({ 
           frontend: answers.frontend,
           database: answers.database
