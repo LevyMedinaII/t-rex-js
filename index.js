@@ -10,11 +10,12 @@ const chalk = require('chalk')
 const pkg = require('./package.json')
 const inquirer = require('inquirer')
 const create = require('./commands/create')
-
+const add = require('./commands/add')
 
 program.version(pkg.version)
 
 program.command('create').action(create)
+program.command('add').action(add)
 program.parse(process.argv)
 
 // if program was called with no arguments, show help.
