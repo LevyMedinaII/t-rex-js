@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const fs = require('fs')
-let addInquirer = require('../inquirer/add')
+let addInquirer = require('./add-inquirer')
 
 /*
  * Add resource command

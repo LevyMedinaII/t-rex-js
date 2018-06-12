@@ -9,8 +9,8 @@ const program = require('commander')
 const chalk = require('chalk')
 const pkg = require('./package.json')
 const inquirer = require('inquirer')
-const create = require('./commands/create')
-const add = require('./commands/add')
+const create = require('./commands/create/create')
+const add = require('./commands/add/add')
 
 program.version(pkg.version)
 
