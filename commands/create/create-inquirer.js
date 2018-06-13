@@ -36,7 +36,7 @@ const isEmpty = (str) => {
  * Create inquirer questions
  * 
  */
-let questions = [
+const QUESTIONS = [
   { type: 'input', name: 'name', message: 'Enter Project Name:', validate: isEmpty },
   { type: 'input', name: 'version', message: 'Enter Version [ Format| x.x.x ]:', default: DEFAULT_VER },
   { type: 'input', name: 'description', message: 'Enter Description:', default: DEFAULT_DESC },
@@ -45,7 +45,7 @@ let questions = [
 ]
 
 module.exports = async () => {
-  let answers = await inquirer.prompt(questions)
+  let answers = await inquirer.prompt(QUESTIONS)
   
   console.log()
   console.log(chalk.bold.green('APP CONFIGURATION'))

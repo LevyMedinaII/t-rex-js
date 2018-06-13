@@ -4,14 +4,14 @@
  * Require dependencies
  *
  */
-
 const inquirer = require('inquirer')
 const chalk = require('chalk')
+
 /**
  * Values for inquirer questions
  * 
  */
-const values = {
+const QUESTION_VALUES = {
   resource_types: [
     { name: 'CREATE' },
     { name: 'READ' },
@@ -24,15 +24,28 @@ const values = {
  * Create inquirer questions
  * 
  */
-let questions = [
-  { type: 'input', name: 'resource_name', message: 'Enter Resource Name:' },
-  { type: 'confirm', name: 'create_view', message: 'Create View?' },
-  { type: 'checkbox', name: 'create_resource', message: 'Choose Resources:', choices: values.resource_types },
+const QUESTIONS = [
+  {
+    type: 'input',
+    name: 'resource_name',
+    message: 'Enter Resource Name:'
+  },
+  {
+    type: 'confirm',
+    name: 'create_view',
+    message: 'Create View?'
+  },
+  {
+    type: 'checkbox',
+    name: 'create_resource',
+    message: 'Choose Resources:',
+    choices: QUESTION_VALUES.resource_types
+  },
 ]
 
 module.exports = async () => {
-  let answers = await inquirer.prompt(questions)
-  
+  let answers = await inquirer.prompt(QUESTIONS)
+
   console.log()
   console.log(chalk.bold.green('ADDED RESOURCE'))
   console.log(chalk.bold.green('------------------'))

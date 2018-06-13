@@ -4,6 +4,26 @@ const moment = require('moment')
 let createInquirer = require('./create-inquirer')
 
 /*
+ * package.json template
+ * 
+ */
+let PACKAGE_JSON_TEMPLATE = {
+  name: ``,
+  version: ``,
+  description: ``,
+  dependencies: {
+    'body-parser': '*',
+    express: '*',
+    pg: '*',
+    'pg-hstore': '*',
+    sequelize: '*',
+  },
+  devDependencies: {
+    nodemon: '*'
+  }
+}
+
+/*
  * Create command
  *
  */
@@ -20,22 +40,13 @@ let create = async () => {
       // Create project directory
       fs.mkdirSync(`${process.cwd()}/${projName}`)
 
-      let packageFile = {
-        name: `${projName}`,
-        version: `${projVersion}`,
-        description: `${projDescription}`,
-        dependencies: {
-          'body-parser': '*',
-          express: '*',
-          pg: '*',
-          'pg-hstore': '*',
-          sequelize: '*',
-        }
-      }
+      PACKAGE_JSON_TEMPLATE.name =  `${projName}`
+      PACKAGE_JSON_TEMPLATE.version = `${projVersion}`,
+      PACKAGE_JSON_TEMPLATE.description = `${projDescription}`,
       
       // Write package file
       fs.writeFile(`${process.cwd()}/${projName}/package.json`,
-        JSON.stringify(packageFile, null, 4), (err) => {
+        JSON.stringify(PACKAGE_JSON_TEMPLATE, null, 4), (err) => {
           if (err) return console.log(err)
           console.log(`Project ${projName} has been created`)
       })
