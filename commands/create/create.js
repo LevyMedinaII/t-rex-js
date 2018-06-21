@@ -19,7 +19,7 @@ let create = async () => {
     { spaces: 4 }
   )
 
-  // Create files
+  // Populate folders with template files
   fse.copySync(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
   fse.copySync(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
   fse.copySync(`${__dirname}/../../templates/resources`, `${process.cwd()}/${projName}/resources`)
@@ -27,6 +27,7 @@ let create = async () => {
   console.log(`Project ${projName} has been created`)
 }
 
+/* == Misc Functions == */
 let generateDirectories = (projName) => {
   fse.ensureDirSync(`${process.cwd()}/${projName}`)
   fse.ensureDirSync(`${process.cwd()}/${projName}/client`)
