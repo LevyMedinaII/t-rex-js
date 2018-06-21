@@ -1,0 +1,20 @@
+{
+    "name": "sample-app",
+    "version": "0.0.1",
+    "description": "A sample full-stack application generated with T-RexJS",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "body-parser": "*",
+        "express": "*",
+        "pg": "*",
+        "pg-hstore": "*",
+        "sequelize": "*",
+        "socket.io": "*"
+    },
+    "devDependencies": {
+        "nodemon": "*"
+    }
+}

@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const fs = require('fs')
 const moment = require('moment')
-let createInquirer = require('./create-inquirer')
+let createInquirer = require('./inquirer')
 
 /*
  * package.json template
@@ -13,14 +13,18 @@ let PACKAGE_JSON_TEMPLATE = {
   description: ``,
   dependencies: {
     'body-parser': '*',
-    express: '*',
-    pg: '*',
+    'express': '*',
+    'pg': '*',
     'pg-hstore': '*',
-    sequelize: '*',
+    'sequelize': '*',
+    'socket.io':  '*'
   },
   devDependencies: {
     nodemon: '*'
-  }
+  },
+  scripts: {
+    start: "nodemon server.js"
+  },
 }
 
 /*
@@ -28,7 +32,7 @@ let PACKAGE_JSON_TEMPLATE = {
  *
  */
 let create = async () => {
-  // Prompt for user input [/inquirer/create.js]
+  // Prompt for user input [./inquirer.js]
   let answers = await createInquirer()
   let projName = answers.name
   let projVersion = answers.version
@@ -39,8 +43,10 @@ let create = async () => {
     fs.mkdirSync(`${process.cwd()}/${projName}`)
     
     // Create folder structure
-    fs.mkdirSync(`${process.cwd()}/${projName}/user-interface`)
-    fs.mkdirSync(`${process.cwd()}/${projName}/server`)
+    fs.mkdirSync(`${process.cwd()}/${projName}/ui`)
+    fs.mkdirSync(`${process.cwd()}/${projName}/resources`)
+    fs.mkdirSync(`${process.cwd()}/${projName}/resources/db`)
+    fs.mkdirSync(`${process.cwd()}/${projName}/resources/sample-resource`)
 
     // Create package.json file
     PACKAGE_JSON_TEMPLATE.name =  `${projName}`
@@ -54,8 +60,8 @@ let create = async () => {
 
     // Create files
     fs
-      .createReadStream(__dirname + '/../../templates/app.js')
-      .pipe(fs.createWriteStream(`${process.cwd()}/${projName}/app.js`))
+      .createReadStream(__dirname + '/../../templates/server.js')
+      .pipe(fs.createWriteStream(`${process.cwd()}/${projName}/server.js`))
 
     console.log(`Project ${projName} has been created`)
   } catch (err)  {
