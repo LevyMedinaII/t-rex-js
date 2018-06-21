@@ -12,32 +12,30 @@ class App extends Component {
       data: [],
     }
   }
-  componentDidMount() {
-    this.setState({ data: this.getData() })
+  componentDidMount = async () => {
+    this.setState({ data: await this.getData() })
   }
   getData = async () => {
-    return await axios.get('http://localhost:5001/sample')
-  }
-  send = () => {
-    const socket = socketIOClient(this.state.endpoint)
-    socket.emit('change color', this.state.color)
-  }
-
-  setColor = (color) => {
-    this.setState({ color })
+    let data =  (await axios.get('/sample')).data
+    console.log(data)
+    return data
   }
 
   render() {
     const socket = socketIOClient(this.state.endpoint)
-    socket.on('update sample', async () => { this.setState({ data: await this.getData() }) })
+
+    socket.on('update sample', async () => {
+      let data = await this.getData()
+      this.setState({ data })
+    })
 
     return (
       <div>
         <ol>
         {
-          this.state.data.length > 0 ?
+          this.state.data === undefined || this.state.data.length > 0 ?
             this.state.data.map((value, key) => {
-              return <li> { value } </li>
+              return <li key={key}> { `${value.last_name}, ${value.first_name}` } </li>
             }) : ''
         }
         </ol>
