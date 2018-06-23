@@ -32,8 +32,6 @@ let generateDirectories = (projName) => {
   fse.ensureDirSync(`${process.cwd()}/${projName}`)
   fse.ensureDirSync(`${process.cwd()}/${projName}/client`)
   fse.ensureDirSync(`${process.cwd()}/${projName}/resources`)
-  fse.ensureDirSync(`${process.cwd()}/${projName}/resources/db`)
-  fse.ensureDirSync(`${process.cwd()}/${projName}/resources/sample-resource`)
 }
 
 let generatePackageJSON = (config) => {
