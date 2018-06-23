@@ -1,0 +1,27 @@
+{
+    "name": "client",
+    "version": "undefined",
+    "description": "undefined",
+    "private": true,
+    "proxy": "http://localhost:5001",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack --mode development",
+        "build": "webpack --mode production"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.4",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "webpack": "^4.0.1",
+        "webpack-cli": "^2.0.10"
+    },
+    "dependencies": {
+        "react": "^16.4.1",
+        "react-dom": "^16.4.1"
+    }
+}

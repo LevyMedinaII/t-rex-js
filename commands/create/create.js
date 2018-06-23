@@ -65,17 +65,17 @@ let generateReactPackageJson = (config) => {
     'description': `${config.description}`,
     'private': true,
     'proxy': 'http://localhost:5001',
-    'dependencies': {
-      'react': '*',
-      'react-dom': '*',
-      'react-scripts': '*',
-      'socket.io-client': '*'
-    },
+    'main': 'index.js',
     'scripts': {
-      'start': 'react-scripts start',
-      'build': 'react-scripts build',
-      'test': 'react-scripts test --env=jsdom',
-      'eject': 'react-scripts eject'
+      'start': 'webpack --mode development',
+      'build': 'webpack --mode production'
+    },
+    'keywords': [],
+    'author': '',
+    'license': 'ISC',
+    'devDependencies': {
+      'webpack': '^4.0.1',
+      'webpack-cli': '^2.0.10'
     }
   }
 
