@@ -11,13 +11,13 @@ let create = async () => {
   let projName = answers.name
   let projVersion = answers.version
   let projDescription = answers.description
+  let packageJson = generatePackageJson({ projName, projVersion, projDescription })
+  let reactPackageJson = generateReactPackageJson({ projName, projDescription })
 
   generateDirectories(projName)
-  fse.writeJsonSync(
-    `${process.cwd()}/${projName}/package.json`,
-    generatePackageJSON({ projName, projVersion, projDescription }),
-    { spaces: 4 }
-  )
+
+  fse.writeJsonSync(`${process.cwd()}/${projName}/package.json`, packageJson, { spaces: 4 })
+  fse.writeJsonSync(`${process.cwd()}/${projName}/client/package.json`, reactPackageJson, { spaces: 4 })
 
   // Populate folders with template files
   fse.copySync(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
@@ -34,7 +34,7 @@ let generateDirectories = (projName) => {
   fse.ensureDirSync(`${process.cwd()}/${projName}/resources`)
 }
 
-let generatePackageJSON = (config) => {
+let generatePackageJson = (config) => {
   let PACKAGE_JSON_TEMPLATE = {
     name: `${config.projName}`,
     version: `${config.projVersion}`,
@@ -51,11 +51,36 @@ let generatePackageJSON = (config) => {
       nodemon: '*'
     },
     scripts: {
-      start: "nodemon server.js"
+      start: 'nodemon server.js'
     },
   }
 
   return PACKAGE_JSON_TEMPLATE
 }
+
+let generateReactPackageJson = (config) => {
+  let PACKAGE_JSON_TEMPLATE = {
+    'name': 'client',
+    'version': `${config.version}`,
+    'description': `${config.description}`,
+    'private': true,
+    'proxy': 'http://localhost:5001',
+    'dependencies': {
+      'react': '*',
+      'react-dom': '*',
+      'react-scripts': '*',
+      'socket.io-client': '*'
+    },
+    'scripts': {
+      'start': 'react-scripts start',
+      'build': 'react-scripts build',
+      'test': 'react-scripts test --env=jsdom',
+      'eject': 'react-scripts eject'
+    }
+  }
+
+  return PACKAGE_JSON_TEMPLATE
+}
+
 
 module.exports = create
