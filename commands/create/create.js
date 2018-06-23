@@ -61,8 +61,8 @@ let generatePackageJson = (config) => {
 let generateReactPackageJson = (config) => {
   let PACKAGE_JSON_TEMPLATE = {
     'name': 'client',
-    'version': `${config.version}`,
-    'description': `${config.description}`,
+    'version': `${config.projVersion}`,
+    'description': `${config.projDescription}`,
     'private': true,
     'proxy': 'http://localhost:5001',
     'main': 'index.js',
