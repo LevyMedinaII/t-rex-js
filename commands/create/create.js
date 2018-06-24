@@ -12,26 +12,35 @@ let create = async () => {
   let projVersion = answers.version
   let projDescription = answers.description
   let packageJson = generatePackageJson({ projName, projVersion, projDescription })
-  let reactPackageJson = generateReactPackageJson({ projName, projDescription })
+  let reactPackageJson = generateReactPackageJson({ projVersion, projDescription })
 
-  generateDirectories(projName)
+  try {
+    generateDirectories(projName)
 
-  fse.writeJsonSync(`${process.cwd()}/${projName}/package.json`, packageJson, { spaces: 4 })
-  fse.writeJsonSync(`${process.cwd()}/${projName}/client/package.json`, reactPackageJson, { spaces: 4 })
+    fse.writeJsonSync(`${process.cwd()}/${projName}/package.json`, packageJson, { spaces: 4 })
+    fse.writeJsonSync(`${process.cwd()}/${projName}/client/package.json`, reactPackageJson, { spaces: 4 })
 
-  // Populate folders with template files
-  fse.copySync(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
-  fse.copySync(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
-  fse.copySync(`${__dirname}/../../templates/resources`, `${process.cwd()}/${projName}/resources`)
+    // Populate folders with template files
+    fse.copySync(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
+    fse.copySync(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
+    fse.copySync(`${__dirname}/../../templates/resources`, `${process.cwd()}/${projName}/resources`)
+    fse.copySync(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
 
-  console.log(`Project ${projName} has been created`)
+    console.log(`Project ${projName} has been created`)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 /* == Misc Functions == */
 let generateDirectories = (projName) => {
-  fse.ensureDirSync(`${process.cwd()}/${projName}`)
-  fse.ensureDirSync(`${process.cwd()}/${projName}/client`)
-  fse.ensureDirSync(`${process.cwd()}/${projName}/resources`)
+  if (fse.pathExistsSync(`${process.cwd()}/${projName}`))
+    throw new Error(`Project '${projName}' already exists.`)
+  else {
+    fse.ensureDirSync(`${process.cwd()}/${projName}`)
+    fse.ensureDirSync(`${process.cwd()}/${projName}/client`)
+    fse.ensureDirSync(`${process.cwd()}/${projName}/resources`)
+  }
 }
 
 let generatePackageJson = (config) => {
@@ -39,19 +48,19 @@ let generatePackageJson = (config) => {
     name: `${config.projName}`,
     version: `${config.projVersion}`,
     description: `${config.projDescription}`,
-    dependencies: {
-      'body-parser': '*',
-      'express': '*',
-      'pg': '*',
-      'pg-hstore': '*',
-      'sequelize': '*',
-      'socket.io':  '*'
+    'dependencies': {
+      'body-parser': '^1.18.3',
+      'express': '^4.16.3',
+      'pg': '^7.4.3',
+      'pg-hstore': '^2.3.2',
+      'sequelize': '^4.38.0',
+      'socket.io': '^2.1.1'
     },
-    devDependencies: {
-      nodemon: '*'
+    'devDependencies': {
+      'nodemon': '^1.17.5'
     },
     scripts: {
-      start: 'nodemon server.js'
+      start: 'node server.js'
     },
   }
 
@@ -67,15 +76,32 @@ let generateReactPackageJson = (config) => {
     'proxy': 'http://localhost:5001',
     'main': 'index.js',
     'scripts': {
-      'start': 'webpack --mode development',
+      'start': 'webpack-dev-server --mode development --open --hot',
       'build': 'webpack --mode production'
     },
     'keywords': [],
     'author': '',
     'license': 'ISC',
     'devDependencies': {
+      'babel-core': '^6.26.3',
+      'babel-loader': '^7.1.4',
+      'babel-plugin-transform-async-to-generator': '^6.24.1',
+      'babel-plugin-transform-runtime': '^6.23.0',
+      'babel-preset-env': '^1.7.0',
+      'babel-preset-react': '^6.24.1',
+      'css-loader': '^0.28.11',
+      'html-webpack-plugin': '^3.2.0',
+      'style-loader': '^0.21.0',
       'webpack': '^4.0.1',
-      'webpack-cli': '^2.0.10'
+      'webpack-cli': '^2.0.10',
+      'webpack-dev-server': '^3.1.4'
+    },
+    'dependencies': {
+      'axios': '0.18.0',
+      'babel-plugin-transform-class-properties': '^6.24.1',
+      'react': '^16.4.1',
+      'react-dom': '^16.4.1',
+      'socket.io-client': '^2.1.1'
     }
   }
 

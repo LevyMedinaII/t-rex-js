@@ -1,5 +1,5 @@
 module.exports = (IO) => {
   return [
-    { location: require('./sample/sample')(IO), path: '/sample'},
+    { location: require('./sample-resource/sample-resource')(IO), path: '/sample'},
   ]
 }

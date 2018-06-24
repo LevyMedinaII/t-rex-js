@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
-import socketIOClient from 'socket.io-client';
-import axios from 'axios';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import socketIOClient from 'socket.io-client'
+import axios from 'axios'
+import * as config from './../../config.json'
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      endpoint: "http://localhost:5001",
-      color: 'white',
+      endpoint: `http://localhost:${config.backend_port}`,
       data: [],
     }
   }
   componentDidMount = async () => {
     this.setState({ data: await this.getData() })
   }
+  
   getData = async () => {
-    let data =  (await axios.get('/sample')).data
-    console.log(data)
+    let data =  (await axios.get('/api/sample')).data
     return data
   }
 
@@ -28,6 +29,10 @@ class App extends Component {
       let data = await this.getData()
       this.setState({ data })
     })
+
+    const App = () => {
+      return <div>Hello World!</div>
+    }
 
     return (
       <div>
@@ -44,4 +49,4 @@ class App extends Component {
   }
 }
 
-export default App;
+ReactDOM.render(<App />, document.getElementById('root'))

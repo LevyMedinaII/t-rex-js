@@ -1,11 +1,13 @@
 /* == PACKAGE IMPORTS == */
-const express = require('express')
 const bodyParser = require('body-parser')
+const config = require('./config.json')
+const express = require('express')
 const http = require('http')
+const path = require('path')
 const socketIO = require('socket.io')
 
 const APP = express()
-const APP_PORT = '5001'
+const APP_PORT = config.backend_port
 
 /* == ENABLE SOCKET.IO ==  */
 const SERVER = http.createServer(APP)
@@ -24,9 +26,16 @@ IO.on('connection', socket => {
 APP.use(bodyParser.json())
 // Enable x-www-form-urlencoded
 APP.use(bodyParser.urlencoded({ extended: true }))
+// APP.use(express.static(path.join(__dirname, 'client/dist')))
 
 const resources = require('./resources/index')(IO)
-resources.map(resource => { APP.use(resource.path, resource.location) })
+resources.map(resource => { APP.use(`${resource.path}`, resource.location) })
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+// APP.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname+'/client/dist/index.html'));
+// })
 
 /* == START SERVER == */
 SERVER.listen(APP_PORT, () => console.log(`Listening on port ${APP_PORT}`))

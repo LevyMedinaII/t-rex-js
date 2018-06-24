@@ -1,4 +1,5 @@
 {
-  "port": "5001",
-  "db_url": ""
+  "backend_port": "5001",
+  "db_url": "postgres://postgres:password@localhost:5432/trex_db",
+  "frontend_port": "8080"
 }
