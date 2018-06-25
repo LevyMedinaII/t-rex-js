@@ -1,7 +1,7 @@
 module.exports = (IO) => {
   const Sequelize = require('sequelize')
   const sequelize = require('../db')
-  const resource_name = 'sample'
+  const resource_name = 'Sample'
 
   const Sample = sequelize.define(resource_name, {
     first_name: { type: Sequelize.STRING },

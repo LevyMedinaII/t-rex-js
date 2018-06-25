@@ -26,7 +26,7 @@ let create = async () => {
     fse.copySync(`${__dirname}/../../templates/resources`, `${process.cwd()}/${projName}/resources`)
     fse.copySync(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
 
-    console.log(`Project ${projName} has been created`)
+    console.log(`Project ${chalk.green(projName)} has been created`)
   } catch (err) {
     console.log(err)
   }
@@ -35,7 +35,7 @@ let create = async () => {
 /* == Misc Functions == */
 let generateDirectories = (projName) => {
   if (fse.pathExistsSync(`${process.cwd()}/${projName}`))
-    throw new Error(`Project '${projName}' already exists.`)
+    throw new Error(`Project ${chalk.red(projName)} already exists.`)
   else {
     fse.ensureDirSync(`${process.cwd()}/${projName}`)
     fse.ensureDirSync(`${process.cwd()}/${projName}/client`)

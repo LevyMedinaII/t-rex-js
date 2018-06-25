@@ -11,8 +11,8 @@ const chalk = require('chalk')
 const DEFAULT_VER = '0.0.1'
 const DEFAULT_DESC = 'A sample full-stack application generated with T-RexJS'
 
-const isEmpty = (str) => {
-  if (str) return true
+const isValid = (str) => {
+  if (str && !(/\s/.test(str))) return true
   else return false
 }
 /**
@@ -37,7 +37,7 @@ const isEmpty = (str) => {
  * 
  */
 const QUESTIONS = [
-  { type: 'input', name: 'name', message: 'Enter Project Name:', validate: isEmpty },
+  { type: 'input', name: 'name', message: 'Enter Project Name:', validate: isValid },
   { type: 'input', name: 'version', message: 'Enter Version [ Format| x.x.x ]:', default: DEFAULT_VER },
   { type: 'input', name: 'description', message: 'Enter Description:', default: DEFAULT_DESC },
   // { type: 'list', name: 'frontend', message: 'Choose Front-End Library:', choices: values.frontend },

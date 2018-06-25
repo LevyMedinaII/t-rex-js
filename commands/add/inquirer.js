@@ -7,6 +7,10 @@
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 
+const isValid = (str) => {
+  if (str && !(/\s/.test(str))) return true
+  else return false
+}
 /**
  * Values for inquirer questions
  * 
@@ -27,19 +31,20 @@ const QUESTION_VALUES = {
 const QUESTIONS = [
   {
     type: 'input',
-    name: 'resource_name',
-    message: 'Enter Resource Name:'
+    name: 'resourceName',
+    message: 'Enter Resource Name:',
+    validate: isValid
   },
   {
     type: 'confirm',
-    name: 'create_view',
-    message: 'Create View?'
+    name: 'createView',
+    message: 'Create View?',
   },
   {
     type: 'checkbox',
-    name: 'create_resource',
+    name: 'createResource',
     message: 'Choose Resources:',
-    choices: QUESTION_VALUES.resource_types
+    choices: QUESTION_VALUES.resource_types,
   },
 ]
 
@@ -49,9 +54,9 @@ module.exports = async () => {
   console.log()
   console.log(chalk.bold.green('ADDED RESOURCE'))
   console.log(chalk.bold.green('------------------'))
-  console.log(chalk.grey('Resource Name:'), answers.resource_name)
-  console.log(chalk.grey('Add View?'), answers.create_view)
-  console.log(chalk.grey('Resources:'), answers.create_resource)
+  console.log(chalk.grey('Resource Name:'), answers.resourceName)
+  console.log(chalk.grey('Add View?'), answers.createView)
+  console.log(chalk.grey('Resources:'), answers.createResource)
   console.log()
 
   return answers
