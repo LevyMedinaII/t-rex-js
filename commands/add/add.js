@@ -11,8 +11,8 @@ let addInquirer = require('./inquirer')
 let add = async () => {
   try {
     let answers = await addInquirer()
-
-    fse.ensureDir(`./resources/${answers.resourceName}`, err => { if (err) throw err })
+    if (!fse.pathExistsSync(`./resources`)) throw new Error('ERROR: Please run the command at the root folder of your project.')
+    fse.ensureDirSync(`./resources/${answers.resourceName}`)
     fse.copySync(
       `${__dirname}/../../templates/resources/sample-resource/sample-resource.js`,
       `${process.cwd()}/resources/${answers.resourceName}/${answers.resourceName}.js`
@@ -33,6 +33,15 @@ let add = async () => {
       /\/\/INSERTION/g,
       `{ location: require('./${answers.resourceName}/${answers.resourceName}')(IO), path: '/${answers.resourceName.toLowerCase()}'}\n\t\t//INSERTION`
     )
+
+    // Print Success
+    console.log()
+    console.log(chalk.bold.green('ADDED RESOURCE'))
+    console.log(chalk.bold.green('------------------'))
+    console.log(chalk.grey('Resource Name:'), answers.resourceName)
+    console.log(chalk.grey('Add View?'), answers.createView)
+    console.log(chalk.grey('Resources:'), answers.createResource)
+    console.log()
   } catch (err) {
     console.log(chalk.red(err))
   }

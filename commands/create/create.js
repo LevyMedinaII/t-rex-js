@@ -25,8 +25,16 @@ let create = async () => {
     fse.copySync(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
     fse.copySync(`${__dirname}/../../templates/resources`, `${process.cwd()}/${projName}/resources`)
     fse.copySync(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
-
-    console.log(`Project ${chalk.green(projName)} has been created`)
+    
+    // Print success
+    console.log(`Project ${chalk.bold.green(projName)} has been created`)
+    console.log()
+    console.log(chalk.bold.green('APP CONFIGURATION'))
+    console.log(chalk.bold.green('------------------'))
+    console.log(chalk.grey('Project Name:'), answers.name)
+    console.log(chalk.grey('Project Version:'), answers.version)
+    console.log(chalk.grey('Project Description:'), answers.description)
+    console.log()
   } catch (err) {
     console.log(err)
   }

@@ -50,14 +50,5 @@ const QUESTIONS = [
 
 module.exports = async () => {
   let answers = await inquirer.prompt(QUESTIONS)
-
-  console.log()
-  console.log(chalk.bold.green('ADDED RESOURCE'))
-  console.log(chalk.bold.green('------------------'))
-  console.log(chalk.grey('Resource Name:'), answers.resourceName)
-  console.log(chalk.grey('Add View?'), answers.createView)
-  console.log(chalk.grey('Resources:'), answers.createResource)
-  console.log()
-
   return answers
 }

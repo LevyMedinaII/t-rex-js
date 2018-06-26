@@ -1,5 +1,5 @@
 {
-  "name": "t-rex",
+  "name": "t-rex-js",
   "version": "1.0.0",
   "description": "An open source full-stack generator built with React, Express, Node, and PostgreSQL.",
   "preferGlobal": true,

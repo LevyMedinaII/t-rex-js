@@ -46,14 +46,5 @@ const QUESTIONS = [
 
 module.exports = async () => {
   let answers = await inquirer.prompt(QUESTIONS)
-  
-  console.log()
-  console.log(chalk.bold.green('APP CONFIGURATION'))
-  console.log(chalk.bold.green('------------------'))
-  console.log(chalk.grey('Project Name:'), answers.name)
-  console.log(chalk.grey('Project Version:'), answers.version)
-  console.log(chalk.grey('Project Description:'), answers.description)
-  console.log()
-
   return answers
 }
