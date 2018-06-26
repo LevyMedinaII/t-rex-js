@@ -12,7 +12,7 @@ let add = async () => {
   try {
     let answers = await addInquirer()
 
-    fse.ensureDirSync(`./resources/${answers.resourceName}`)
+    fse.ensureDir(`./resources/${answers.resourceName}`, err => { if (err) throw err })
     fse.copySync(
       `${__dirname}/../../templates/resources/sample-resource/sample-resource.js`,
       `${process.cwd()}/resources/${answers.resourceName}/${answers.resourceName}.js`
@@ -43,9 +43,7 @@ let capitalize = ([first,...rest]) => first.toUpperCase() + rest.join('')
 let replaceString = async (file, target, value) => {
   try {
     let data = await fse.readFile(file, 'utf8')
-    console.log(data)
     let result = data.replace(target, value)
-    console.log('Result', result)
     await fse.writeFile(file, result, 'utf8')
   } catch (err) {
     throw err
