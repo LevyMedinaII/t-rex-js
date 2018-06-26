@@ -1,6 +1,6 @@
 {
   "name": "t-rex-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An open source full-stack generator built with React, Express, Node, and PostgreSQL.",
   "preferGlobal": true,
   "bin": {
@@ -20,5 +20,16 @@
     "fs-extra": "^6.0.1",
     "inquirer": "^5.2.0",
     "moment": "^2.22.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.npmjs.com/package/t-rex-js"
+  },
+  "keywords": [
+    "react",
+    "fullstack",
+    "express",
+    "generator",
+    "framework"
+  ]
 }
