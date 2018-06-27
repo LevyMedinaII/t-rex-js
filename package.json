@@ -21,6 +21,10 @@
     "inquirer": "^5.2.0",
     "moment": "^2.22.2"
   },
+  "engines": {
+    "node": ">=8.10.0",
+    "npm": ">=6.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://www.npmjs.com/package/t-rex-js"

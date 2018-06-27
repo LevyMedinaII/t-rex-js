@@ -1,7 +1,6 @@
 const chalk = require('chalk')
 const fse = require('fs-extra')
 const path = require('path')
-const appDir = path.dirname(require.main.filename)
 let addInquirer = require('./inquirer')
 
 /*

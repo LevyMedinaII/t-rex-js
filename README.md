@@ -7,6 +7,22 @@
 ```
 npm install -g t-rex-js
 ```
+## Quickstart
+Create a project and open the project:
+```
+t-rex create
+cd <project_name>
+```
+Install server and client dependencies (from project root directory):
+```
+t-rex install
+```
+Start the application (from project root directory):
+```
+npm start // Run server
+cd client
+npm start // Run webpack development server
+```
 ## Usage
 ### Creating a project
 ```
@@ -19,12 +35,14 @@ The `create` command creates a `t-rex` project in the current working directory.
 t-rex add
 ```
 The `add` command creates a `socket.io` enabled resource. (To be improved)
-### Future Developments
+
+
+## Future Developments
 1. `add` creates selected resources
 2. Create and run test cases
 3. `delete` resource command
 4. Client template interfaces for resources
 
-### Contact Details
+## Contact Details
 Email: levymedina3@gmail.com
 
