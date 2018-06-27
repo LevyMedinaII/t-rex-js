@@ -66,7 +66,7 @@ The `add` command creates a `socket.io` enabled resource. Command currently avai
 4. Client template interfaces for resources
 
 ## Contact Details
-Name: Levy V. Medina II
-Email: levymedina3@gmail.com
+Name: Levy V. Medina II  
+Email: levymedina3@gmail.com  
 Mobile: (+63) 915 326 0223
 
