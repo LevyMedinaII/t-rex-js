@@ -1,0 +1,19 @@
+{
+    "name": "sample-app",
+    "version": "0.0.1",
+    "description": "A sample full-stack application generated with T-RexJS",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.3",
+        "pg": "^7.4.3",
+        "pg-hstore": "^2.3.2",
+        "sequelize": "^4.38.0",
+        "socket.io": "^2.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^1.17.5"
+    },
+    "scripts": {
+        "start": "node server.js"
+    }
+}
