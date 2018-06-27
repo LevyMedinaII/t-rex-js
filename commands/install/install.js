@@ -22,8 +22,8 @@ let install = () => {
     }, 250)
   })()
   
-  child.stdout.on('data', data => { console.log(chalk.green.bold('STDOUT:'), data) })
-  child.stderr.on('data', data => { console.log(chalk.yellow.bold('STDERR:'), data) })
+  child.stdout.on('data', data => console.log(chalk.green.bold('STDOUT:'), data) )
+  child.stderr.on('data', data => console.log(chalk.yellow.bold('STDERR:'), data) )
 
   child.on('close', code => {
     console.log(chalk.grey.bold('CLOSING CODE:'), code)

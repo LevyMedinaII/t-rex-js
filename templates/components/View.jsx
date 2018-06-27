@@ -12,7 +12,16 @@ class View extends Component {
   }
   render() {
     return(
-      <div></div>
+      <div>
+        <ul>
+          {
+            this.state.data === undefined || this.state.data.length > 0 ?
+              this.state.data.map((value, key) => {
+                return <li key={key}> { `${value.last_name}, ${value.first_name}` } </li>
+              }) : ''
+          }
+        </ul>
+      </div>
     )
   }
 }

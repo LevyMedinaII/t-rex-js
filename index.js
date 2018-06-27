@@ -12,12 +12,14 @@ const inquirer = require('inquirer')
 const create = require('./commands/create/create')
 const add = require('./commands/add/add')
 const install = require('./commands/install/install')
+const run = require('./commands/run/run')
 
 program.version(pkg.version)
 
 program.command('create').action(create)
 program.command('add').action(add)
 program.command('install').action(install)
+program.command('run').action(run)
 program.parse(process.argv)
 
 // if program was called with no arguments, show help.

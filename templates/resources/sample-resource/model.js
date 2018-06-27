@@ -1,6 +1,6 @@
 module.exports = (IO) => {
   const Sequelize = require('sequelize')
-  const sequelize = require('../db')
+  const sequelize = require(`${__dirname}/../db`)
   const resource_name = 'Sample'
 
   const Sample = sequelize.define(resource_name, {

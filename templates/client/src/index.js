@@ -30,10 +30,6 @@ class App extends Component {
       this.setState({ data })
     })
 
-    const App = () => {
-      return <div>Hello World!</div>
-    }
-
     return (
       <div>
         <ol>
@@ -41,7 +37,7 @@ class App extends Component {
           this.state.data === undefined || this.state.data.length > 0 ?
             this.state.data.map((value, key) => {
               return <li key={key}> { `${value.last_name}, ${value.first_name}` } </li>
-            }) : ''
+            }) : 'Loading...'
         }
         </ol>
       </div>

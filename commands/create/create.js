@@ -26,15 +26,7 @@ let create = async () => {
     fse.copySync(`${__dirname}/../../templates/resources`, `${process.cwd()}/${projName}/resources`)
     fse.copySync(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
     
-    // Print success
-    console.log(`Project ${chalk.bold.green(projName)} has been created`)
-    console.log()
-    console.log(chalk.bold.green('APP CONFIGURATION'))
-    console.log(chalk.bold.green('------------------'))
-    console.log(chalk.grey('Project Name:'), answers.name)
-    console.log(chalk.grey('Project Version:'), answers.version)
-    console.log(chalk.grey('Project Description:'), answers.description)
-    console.log()
+    printSuccessMessage(projName, answers)
   } catch (err) {
     console.log(err)
   }
@@ -47,6 +39,7 @@ let generateDirectories = (projName) => {
   else {
     fse.ensureDirSync(`${process.cwd()}/${projName}`)
     fse.ensureDirSync(`${process.cwd()}/${projName}/client`)
+    fse.ensureDirSync(`${process.cwd()}/${projName}/client/components`)
     fse.ensureDirSync(`${process.cwd()}/${projName}/resources`)
   }
 }
@@ -114,6 +107,18 @@ let generateReactPackageJson = (config) => {
   }
 
   return PACKAGE_JSON_TEMPLATE
+}
+
+let printSuccessMessage = (projName, answers) => {
+  // Print success
+  console.log(`Project ${chalk.bold.green(projName)} has been created`)
+  console.log()
+  console.log(chalk.bold.green('APP CONFIGURATION'))
+  console.log(chalk.bold.green('------------------'))
+  console.log(chalk.grey('Project Name:'), answers.name)
+  console.log(chalk.grey('Project Version:'), answers.version)
+  console.log(chalk.grey('Project Description:'), answers.description)
+  console.log()
 }
 
 
