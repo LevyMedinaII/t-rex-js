@@ -19,9 +19,7 @@ t-rex install
 ```
 Start the application (from project root directory):
 ```
-npm start // Run server
-cd client
-npm start // Run webpack development server
+t-rex run
 ```
 ## Usage
 ### Creating a project
@@ -30,19 +28,45 @@ t-rex create
 ```
 The `create` command creates a `t-rex` project in the current working directory. Project details will be prompted by the CLI.
 
+### Install project dependencies
+```
+t-rex install
+```
+Installs all required packages for both the server and a client. This command is a macro for the following:
+```
+npm install
+cd client
+npm install
+```
+This command is currently available only in the root directory of the project.
+
+### Run project
+```
+t-rex run
+```
+Runs the express server (backend) and the webpack development server for the react frontend. This command is a macro for the following:
+```
+npm start
+cd client
+npm start
+```
+This command is currently available only in the root directory of the project.
+
 ### Adding a resource
 ```
 t-rex add
 ```
-The `add` command creates a `socket.io` enabled resource. (To be improved)
+The `add` command creates a `socket.io` enabled resource. Command currently available only in the root directory of the project. (To be improved)
 
 
 ## Future Developments
-1. `add` creates selected resources
+1. `add` creates selected resources (GET, DELETE, POST, UPDATE)
 2. Create and run test cases
 3. `delete` resource command
 4. Client template interfaces for resources
 
 ## Contact Details
+Name: Levy V. Medina II
 Email: levymedina3@gmail.com
+Mobile: (+63) 915 326 0223
 
