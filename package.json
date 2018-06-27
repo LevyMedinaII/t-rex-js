@@ -27,13 +27,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://www.npmjs.com/package/t-rex-js"
+    "url": "https://github.com/LevyMedinaII/t-rex-js"
   },
   "keywords": [
     "react",
     "fullstack",
     "express",
     "generator",
-    "framework"
+    "framework",
+    "websockets"
   ]
 }
