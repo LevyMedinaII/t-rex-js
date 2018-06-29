@@ -29,7 +29,9 @@ APP.use(bodyParser.urlencoded({ extended: true }))
 // APP.use(express.static(path.join(__dirname, 'client/dist')))
 
 const resources = require('./resources/index')(IO)
-resources.map(resource => { APP.use(`${resource.path}`, resource.location) })
+
+if (resources !== undefined || resources.length > 0)
+  resources.map(resource => { APP.use(`${resource.path}`, resource.location) })
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

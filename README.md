@@ -34,9 +34,9 @@ t-rex install
 ```
 Installs all required packages for both the server and a client. This command is a macro for the following:
 ```
-npm install
+yarn install
 cd client
-npm install
+yarn install
 ```
 This command is currently available only in the root directory of the project.
 
@@ -46,9 +46,9 @@ t-rex run
 ```
 Runs the express server (backend) and the webpack development server for the react frontend. This command is a macro for the following:
 ```
-npm start
+yarn run start
 cd client
-npm start
+yarn run start
 ```
 This command is currently available only in the root directory of the project.
 

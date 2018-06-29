@@ -37,8 +37,8 @@ const QUESTIONS = [
   },
   {
     type: 'confirm',
-    name: 'createView',
-    message: 'Create View?',
+    name: 'enableSocket',
+    message: 'Enable SocketIO for this resource?',
   },
   {
     type: 'checkbox',

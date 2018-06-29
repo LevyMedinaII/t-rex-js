@@ -23,7 +23,8 @@ let create = async () => {
     // Populate folders with template files
     fse.copySync(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
     fse.copySync(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
-    fse.copySync(`${__dirname}/../../templates/resources`, `${process.cwd()}/${projName}/resources`)
+    fse.copySync(`${__dirname}/../../templates/resources/db.js`, `${process.cwd()}/${projName}/resources/db.js`)
+    fse.copySync(`${__dirname}/../../templates/resources/index.js`, `${process.cwd()}/${projName}/resources/index.js`)
     fse.copySync(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
     
     printSuccessMessage(projName, answers)
