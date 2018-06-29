@@ -17,6 +17,10 @@ Install server and client dependencies (from project root directory):
 ```
 t-rex install
 ```
+Provide a valid database url in `config.json`:
+```
+"db_url" : <valid database url>
+```
 Start the application (from project root directory):
 ```
 t-rex run
@@ -52,11 +56,18 @@ yarn run start
 ```
 This command is currently available only in the root directory of the project.
 
+### config.json
+This file contains all of the editable system defaults supported by t-rex.
+
 ### Adding a resource
 ```
 t-rex add
 ```
-The `add` command creates a `socket.io` enabled resource. Command currently available only in the root directory of the project. (To be improved)
+The `add` command creates the ff:
+- A resource located in the `/resources/<resource_name>` folder containing a dummy model for the resource
+- A react component in `/client/src/components` which displays all instances of the model associated with the resource  
+  
+NOTE: If there is no valid `db_url` in `config.json`, running your application after adding a resource causes the Express server to crash.
 
 
 ## Future Developments
