@@ -50,5 +50,6 @@ const QUESTIONS = [
 
 module.exports = async () => {
   let answers = await inquirer.prompt(QUESTIONS)
+  answers.resourceName = answers.resourceName.toLowerCase()
   return answers
 }

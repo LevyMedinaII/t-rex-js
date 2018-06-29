@@ -8,7 +8,7 @@ const path = require('path')
  */
 let install = () => {
   const { exec } = require( 'child_process' )
-  const child = exec('npm install\ncd client\nnpm install')
+  const child = exec('yarn\ncd client\nyarn')
 
   console.log(chalk.green('Installing project dependencies...'))
   

@@ -8,8 +8,8 @@ const path = require('path')
  */
 let run = async () => {
   const { exec } = require( 'child_process' )
-  const child = await exec('npm start\ncd client\nnpm start')
-  const child_client = await exec('cd client\nnpm start')
+  const child = await exec('yarn run start\ncd client\nyarn run start')
+  const child_client = await exec('cd client\nyarn run start')
 
   console.log(chalk.green('Starting development server...'))
   

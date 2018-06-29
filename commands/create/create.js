@@ -39,7 +39,7 @@ let generateDirectories = (projName) => {
   else {
     fse.ensureDirSync(`${process.cwd()}/${projName}`)
     fse.ensureDirSync(`${process.cwd()}/${projName}/client`)
-    fse.ensureDirSync(`${process.cwd()}/${projName}/client/components`)
+    fse.ensureDirSync(`${process.cwd()}/${projName}/client/src/components`)
     fse.ensureDirSync(`${process.cwd()}/${projName}/resources`)
   }
 }
