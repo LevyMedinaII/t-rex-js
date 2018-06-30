@@ -11,15 +11,12 @@ let add = async () => {
   try {
     let answers = await addInquirer()
 
-    /* == CREATE BACKEND RESOURCE == */
     if (!fse.pathExistsSync(`./resources`))
       throw new Error('ERROR: Please run the command at the root folder of your project.')
     
-    /*== CREATE FRONTEND FOR RESOURCE ==*/
     if (!fse.pathExistsSync(`./client`))
       throw new Error('ERROR: Please run the command at the root folder of your project.')
 
-    // Create resource files
     fse.ensureDirSync(`./resources/${answers.resourceName}`)
     if (answers.enableSocket) {
       fse.copySync(
@@ -64,8 +61,6 @@ let add = async () => {
       /{{resource_name}}/g,
       `${answers.resourceName}`)
 
-
-    // Print results
     printSuccessMessage(answers)
   } catch (err) {
     console.log(chalk.red(err))
@@ -83,6 +78,7 @@ let printSuccessMessage = (answers) => {
   console.log(chalk.grey('Resources:'), answers.createResource)
   console.log()
 }
+
 let replaceString = (file, target, value) => {
   try {
     let data = fse.readFileSync(file, 'utf8')
@@ -91,6 +87,11 @@ let replaceString = (file, target, value) => {
   } catch (err) {
     throw err
   }
+}
+
+let trexConfigToJson = (file) => {
+  let data = fse.readFileSync(file, 'utf8')
+  return JSON.parse(file)
 }
 
 module.exports = add

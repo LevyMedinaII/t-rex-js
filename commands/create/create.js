@@ -3,11 +3,8 @@ const fse = require('fs-extra')
 const moment = require('moment')
 let createInquirer = require('./inquirer')
 
-/* == Create command == */
 let create = async () => {
-  // Prompt for user input [./inquirer.js]
   let answers = await createInquirer()
-
   let projName = answers.name
   let projVersion = answers.version
   let projDescription = answers.description
@@ -20,20 +17,11 @@ let create = async () => {
     fse.writeJsonSync(`${process.cwd()}/${projName}/package.json`, packageJson, { spaces: 4 })
     fse.writeJsonSync(`${process.cwd()}/${projName}/client/package.json`, reactPackageJson, { spaces: 4 })
 
-    // Populate folders with template files
     fse.copySync(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
-    fse.copySync(`${__dirname}/../../templates/.trexconfig`, `${process.cwd()}/${projName}/.trexconfig`)
     fse.copySync(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
     fse.copySync(`${__dirname}/../../templates/resources/db.js`, `${process.cwd()}/${projName}/resources/db.js`)
     fse.copySync(`${__dirname}/../../templates/resources/index.js`, `${process.cwd()}/${projName}/resources/index.js`)
     fse.copySync(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
-
-    replaceString(
-      `${process.cwd()}/.trexconfig`,
-      /{{project_root}}/g,
-      `${process.cwd()}/${projName}`)
-    
-      console.log(trexFileToJson(`${process.cwd()}/.trexconfig`))
     
     printSuccessMessage(projName, answers)
   } catch (err) {
@@ -128,15 +116,6 @@ let printSuccessMessage = (projName, answers) => {
   console.log(chalk.grey('Project Version:'), answers.version)
   console.log(chalk.grey('Project Description:'), answers.description)
   console.log()
-}
-
-let trexFileToJson = (file) => {
-  try {
-    let data = fse.readFileSync(file, 'utf8')
-    console.log(data)
-  } catch (err) {
-    throw err
-  }
 }
 
 let replaceString = (file, target, value) => {

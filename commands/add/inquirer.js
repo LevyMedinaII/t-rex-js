@@ -5,10 +5,7 @@ const isValid = (str) => {
   if (str && !(/\s/.test(str))) return true
   else return false
 }
-/**
- * Values for inquirer questions
- * 
- */
+
 const QUESTION_VALUES = {
   resource_types: [
     { name: 'CREATE' },
