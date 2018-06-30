@@ -89,9 +89,4 @@ let replaceString = (file, target, value) => {
   }
 }
 
-let trexConfigToJson = (file) => {
-  let data = fse.readFileSync(file, 'utf8')
-  return JSON.parse(file)
-}
-
 module.exports = add
