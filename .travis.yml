@@ -1,4 +1,4 @@
 language: node_js
 sudo: enabled
-node:
+node_js:
   - "7.6"
