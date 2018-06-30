@@ -9,7 +9,7 @@ class {{component_name}} extends Component {
 
     this.state = {
       data: [],
-      endpoint: `http://localhost:${config.backend_port}`,
+      endpoint: `${config.host}:${config.backend_port}`,
     }
   }
 
