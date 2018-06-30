@@ -1,10 +1,5 @@
 #!/usr/bin/env node
 'use strict'
-/**
- * Require dependencies
- *
- */
-
 const program = require('commander')
 const chalk = require('chalk')
 const pkg = require('./package.json')

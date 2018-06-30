@@ -1,9 +1,3 @@
-#!/usr/bin/env node
-'use strict'
-/**
- * Require dependencies
- *
- */
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 

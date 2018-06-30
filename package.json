@@ -4,7 +4,7 @@
   "description": "An open source full-stack generator built with React, Express, Node, and PostgreSQL.",
   "preferGlobal": true,
   "bin": {
-    "t-rex": "./index.js"
+    "t-rex": "./bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

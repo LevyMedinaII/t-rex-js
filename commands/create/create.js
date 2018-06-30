@@ -22,10 +22,18 @@ let create = async () => {
 
     // Populate folders with template files
     fse.copySync(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
+    fse.copySync(`${__dirname}/../../templates/.trexconfig`, `${process.cwd()}/${projName}/.trexconfig`)
     fse.copySync(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
     fse.copySync(`${__dirname}/../../templates/resources/db.js`, `${process.cwd()}/${projName}/resources/db.js`)
     fse.copySync(`${__dirname}/../../templates/resources/index.js`, `${process.cwd()}/${projName}/resources/index.js`)
     fse.copySync(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
+
+    replaceString(
+      `${process.cwd()}/.trexconfig`,
+      /{{project_root}}/g,
+      `${process.cwd()}/${projName}`)
+    
+      console.log(trexFileToJson(`${process.cwd()}/.trexconfig`))
     
     printSuccessMessage(projName, answers)
   } catch (err) {
@@ -122,5 +130,23 @@ let printSuccessMessage = (projName, answers) => {
   console.log()
 }
 
+let trexFileToJson = (file) => {
+  try {
+    let data = fse.readFileSync(file, 'utf8')
+    console.log(data)
+  } catch (err) {
+    throw err
+  }
+}
+
+let replaceString = (file, target, value) => {
+  try {
+    let data = fse.readFileSync(file, 'utf8')
+    let result = data.replace(target, value)
+    fse.writeFileSync(file, result, 'utf8')
+  } catch (err) {
+    throw err
+  }
+}
 
 module.exports = create
