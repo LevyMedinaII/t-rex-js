@@ -75,7 +75,7 @@ let printSuccessMessage = (answers) => {
   console.log(chalk.bold.green('------------------'))
   console.log(chalk.grey('Resource Name:'), answers.resourceName)
   console.log(chalk.grey('Enable SocketsIO?'), answers.enableSocket)
-  console.log(chalk.grey('Resources:'), answers.createResource)
+  // console.log(chalk.grey('Resources:'), answers.createResource)
   console.log()
 }
 
