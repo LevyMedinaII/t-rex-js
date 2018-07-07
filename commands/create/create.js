@@ -19,6 +19,7 @@ let create = async () => {
 
     fse.copySync(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
     fse.copySync(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
+    fse.copySync(`${__dirname}/../../templates/generate.json`, `${process.cwd()}/${projName}/generate.json`)
     fse.copySync(`${__dirname}/../../templates/resources/db.js`, `${process.cwd()}/${projName}/resources/db.js`)
     fse.copySync(`${__dirname}/../../templates/resources/index.js`, `${process.cwd()}/${projName}/resources/index.js`)
     fse.copySync(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
