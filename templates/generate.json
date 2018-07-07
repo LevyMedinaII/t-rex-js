@@ -7,6 +7,6 @@
         "name": "INTEGER",
         "id_number": "STRING" 
       }
-    }
+    } 
   }
 }

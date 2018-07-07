@@ -1,7 +1,6 @@
 const chalk = require('chalk')
 const fse = require('fs-extra')
 const path = require('path')
-const ResourceCreator = require(`${__dirname}/../../lib/ResourceCreator`)
 
 let generate = () => {
   console.log(chalk.green('Generating resources from generate.json...'))
@@ -10,7 +9,7 @@ let generate = () => {
     for (const key in generator.resources) {
       const resource = generator['resources'][key]
       const config = {
-        
+
       }
     }
   } catch (e) {

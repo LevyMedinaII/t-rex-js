@@ -31,12 +31,6 @@ const QUESTIONS = [
     name: 'enableSocket',
     message: 'Enable SocketIO for this resource?',
   },
-  // {
-  //   type: 'checkbox',
-  //   name: 'createResource',
-  //   message: 'Choose Resources:',
-  //   choices: QUESTION_VALUES.resource_types,
-  // },
 ]
 
 module.exports = async () => {
