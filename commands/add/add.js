@@ -74,14 +74,5 @@ let printSuccessMessage = (answers) => {
   // console.log(chalk.grey('Resources:'), answers.createResource)
   console.log()
 }
-let replaceString = (file, target, value) => {
-  try {
-    let data = fse.readFileSync(file, 'utf8')
-    let result = data.replace(target, value)
-    fse.writeFileSync(file, result, 'utf8')
-  } catch (err) {
-    throw err
-  }
-}
 
 module.exports = add

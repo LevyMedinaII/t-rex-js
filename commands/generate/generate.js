@@ -3,15 +3,8 @@ const fse = require('fs-extra')
 const path = require('path')
 
 let generate = () => {
-  console.log(chalk.green('Generating resources from generate.json...'))
   try {
-    const generator = require(`${process.cwd()}/generate.json`)
-    for (const key in generator.resources) {
-      const resource = generator['resources'][key]
-      const config = {
-
-      }
-    }
+    console.log(chalk.green('Generating resources from generate.json...'))
   } catch (e) {
     console.log(chalk.red(e))
     throw new Error('RESOURCE GENERATION ERROR')
