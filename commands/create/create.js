@@ -26,7 +26,10 @@ let create = async () => {
     
     printSuccessMessage(projName, answers)
   } catch (err) {
-    console.log(chalk.bgRed(chalk.bold(' ERROR ')), err)
+    if (err.message)
+      console.log(chalk.bgRed(chalk.bold(' ERROR ')), err.message)
+    else
+      console.log(chalk.bgRed(chalk.bold(' ERROR ')), err)
   }
 }
 
@@ -35,10 +38,10 @@ let generateDirectories = (projName) => {
   if (fse.pathExistsSync(`${process.cwd()}/${projName}`))
     throw `Project ${chalk.red(projName)} already exists.`
   else {
-    fse.ensureDirSync(`${process.cwd()}/${projName}`)
-    fse.ensureDirSync(`${process.cwd()}/${projName}/client`)
-    fse.ensureDirSync(`${process.cwd()}/${projName}/client/src/components`)
-    fse.ensureDirSync(`${process.cwd()}/${projName}/resources`)
+    createDirectoryWithDisplay(`${process.cwd()}/${projName}`)
+    createDirectoryWithDisplay(`${process.cwd()}/${projName}/client`)
+    createDirectoryWithDisplay(`${process.cwd()}/${projName}/client/src/components`)
+    createDirectoryWithDisplay(`${process.cwd()}/${projName}/resources`)
   }
 }
 
@@ -117,8 +120,6 @@ let printSuccessMessage = (projName, answers) => {
   console.log(chalk.grey('Project Description:'), answers.description)
 }
 
-
-
 let replaceString = (file, target, value) => {
   try {
     let data = fse.readFileSync(file, 'utf8')
@@ -138,4 +139,10 @@ let copyWithDisplay = (target, endpoint) => {
   fse.copySync(target, endpoint)
   console.log(chalk.bgGreen(chalk.bold(' CREATE ')), endpoint)
 }
+
+let createDirectoryWithDisplay = (path) => {
+  fse.ensureDirSync(path)
+  console.log(chalk.bgGreen(chalk.bold(' CREATE ')), path)
+}
+
 module.exports = create
