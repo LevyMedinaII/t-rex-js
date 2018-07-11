@@ -1,7 +1,7 @@
 {
   "resources": {
     "user": {
-      "sockets": true,
+      "socket": true,
       "methods": ["GET", "POST"],
       "attributes": {
         "name": "INTEGER",

@@ -8,10 +8,10 @@ const isValid = (str) => {
 
 const QUESTION_VALUES = {
   resource_types: [
-    { name: 'CREATE' },
-    { name: 'READ' },
-    { name: 'UPDATE' },
-    { name: 'DESTROY' },
+    { name: 'GET', value: 'GET' },
+    { name: 'POST', value: 'POST' },
+    { name: 'PUT', value: 'PUT' },
+    { name: 'DELETE', value: 'DELETE' },
   ],
 }
 
@@ -22,19 +22,25 @@ const QUESTION_VALUES = {
 const QUESTIONS = [
   {
     type: 'input',
-    name: 'resourceName',
+    name: 'name',
     message: 'Enter Resource Name:',
     validate: isValid
   },
   {
     type: 'confirm',
-    name: 'enableSocket',
+    name: 'socket',
     message: 'Enable SocketIO for this resource?',
   },
+  {
+    type: 'checkbox',
+    name: 'methods',
+    message: 'Select methods for resource:',
+    choices: QUESTION_VALUES.resource_types,
+  }
 ]
 
 module.exports = async () => {
   let answers = await inquirer.prompt(QUESTIONS)
-  answers.resourceName = answers.resourceName.toLowerCase()
+  answers.name = answers.name.toLowerCase()
   return answers
 }

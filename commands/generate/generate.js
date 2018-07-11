@@ -1,20 +1,22 @@
 const chalk = require('chalk')
 const fse = require('fs-extra')
 const path = require('path')
+const Resource = require(`${__dirname}/../../lib/Resource`)
+const ResourceGenerator = require(`${__dirname}/../../lib/ResourceGenerator`)
 
 let generate = () => {
-  console.log(chalk.green('Generating resources from generate.json...'))
   try {
-    const generator = require(`${process.cwd()}/generate.json`)
-    for (const key in generator.resources) {
-      const resource = generator['resources'][key]
-      const config = {
+    console.log(chalk.grey('Generating resources from generate.json...'))
 
-      }
-    }
+    let generatePath = `${process.cwd()}/generate.json`
+    let resources = ResourceGenerator.createResourcesFromPath(generatePath)
+    
+    resources.map(resource => ResourceGenerator.writeResource(resource))
   } catch (e) {
-    console.log(chalk.red(e))
-    throw new Error('RESOURCE GENERATION ERROR')
+    if (e.message)
+      console.log(chalk.bgRed(chalk.bold(' ERROR ')), e.message)
+    else
+      console.log(chalk.bgRed(chalk.bold(' ERROR ')), e)
   }
 }
 

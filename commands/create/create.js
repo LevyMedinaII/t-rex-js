@@ -14,31 +14,34 @@ let create = async () => {
   try {
     generateDirectories(projName)
 
-    fse.writeJsonSync(`${process.cwd()}/${projName}/package.json`, packageJson, { spaces: 4 })
-    fse.writeJsonSync(`${process.cwd()}/${projName}/client/package.json`, reactPackageJson, { spaces: 4 })
+    writeJsonWithDisplay(`${process.cwd()}/${projName}/package.json`, packageJson, { spaces: 4 })
+    writeJsonWithDisplay(`${process.cwd()}/${projName}/client/package.json`, reactPackageJson, { spaces: 4 })
 
-    fse.copySync(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
-    fse.copySync(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
-    fse.copySync(`${__dirname}/../../templates/generate.json`, `${process.cwd()}/${projName}/generate.json`)
-    fse.copySync(`${__dirname}/../../templates/resources/db.js`, `${process.cwd()}/${projName}/resources/db.js`)
-    fse.copySync(`${__dirname}/../../templates/resources/index.js`, `${process.cwd()}/${projName}/resources/index.js`)
-    fse.copySync(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
+    copyWithDisplay(`${__dirname}/../../templates/server.js`, `${process.cwd()}/${projName}/server.js`)
+    copyWithDisplay(`${__dirname}/../../templates/config.json`, `${process.cwd()}/${projName}/config.json`)
+    copyWithDisplay(`${__dirname}/../../templates/generate.json`, `${process.cwd()}/${projName}/generate.json`)
+    copyWithDisplay(`${__dirname}/../../templates/resources/db.js`, `${process.cwd()}/${projName}/resources/db.js`)
+    copyWithDisplay(`${__dirname}/../../templates/resources/index.js`, `${process.cwd()}/${projName}/resources/index.js`)
+    copyWithDisplay(`${__dirname}/../../templates/client`, `${process.cwd()}/${projName}/client`)
     
     printSuccessMessage(projName, answers)
   } catch (err) {
-    console.log(err)
+    if (err.message)
+      console.log(chalk.bgRed(chalk.bold(' ERROR ')), err.message)
+    else
+      console.log(chalk.bgRed(chalk.bold(' ERROR ')), err)
   }
 }
 
 /* == Misc Functions == */
 let generateDirectories = (projName) => {
   if (fse.pathExistsSync(`${process.cwd()}/${projName}`))
-    throw new Error(`Project ${chalk.red(projName)} already exists.`)
+    throw `Project ${chalk.red(projName)} already exists.`
   else {
-    fse.ensureDirSync(`${process.cwd()}/${projName}`)
-    fse.ensureDirSync(`${process.cwd()}/${projName}/client`)
-    fse.ensureDirSync(`${process.cwd()}/${projName}/client/src/components`)
-    fse.ensureDirSync(`${process.cwd()}/${projName}/resources`)
+    createDirectoryWithDisplay(`${process.cwd()}/${projName}`)
+    createDirectoryWithDisplay(`${process.cwd()}/${projName}/client`)
+    createDirectoryWithDisplay(`${process.cwd()}/${projName}/client/src/components`)
+    createDirectoryWithDisplay(`${process.cwd()}/${projName}/resources`)
   }
 }
 
@@ -108,15 +111,13 @@ let generateReactPackageJson = (config) => {
 }
 
 let printSuccessMessage = (projName, answers) => {
-  // Print success
-  console.log(`Project ${chalk.bold.green(projName)} has been created`)
+  console.log(chalk.bgYellow(chalk.bold.black(' MESSAGE ')), `Project ${chalk.bold.green(projName)} has been created`)
   console.log()
   console.log(chalk.bold.green('APP CONFIGURATION'))
   console.log(chalk.bold.green('------------------'))
   console.log(chalk.grey('Project Name:'), answers.name)
   console.log(chalk.grey('Project Version:'), answers.version)
   console.log(chalk.grey('Project Description:'), answers.description)
-  console.log()
 }
 
 let replaceString = (file, target, value) => {
@@ -127,6 +128,21 @@ let replaceString = (file, target, value) => {
   } catch (err) {
     throw err
   }
+}
+
+let writeJsonWithDisplay = (location, obj) => {
+  fse.writeJsonSync(location, obj, { spaces: 4 })
+  console.log(chalk.bgGreen(chalk.bold(' CREATE ')), location)
+}
+
+let copyWithDisplay = (target, endpoint) => {
+  fse.copySync(target, endpoint)
+  console.log(chalk.bgGreen(chalk.bold(' CREATE ')), endpoint)
+}
+
+let createDirectoryWithDisplay = (path) => {
+  fse.ensureDirSync(path)
+  console.log(chalk.bgGreen(chalk.bold(' CREATE ')), path)
 }
 
 module.exports = create

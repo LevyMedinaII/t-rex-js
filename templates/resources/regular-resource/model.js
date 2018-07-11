@@ -2,10 +2,7 @@ const Sequelize = require('sequelize')
 const sequelize = require(`${__dirname}/../db`)
 const resource_name = '{{resource_name}}'
 
-const {{resource_name}} = sequelize.define(resource_name, {
-  first_name: { type: Sequelize.STRING },
-  last_name: { type: Sequelize.STRING, allowNull: false }
-})
+const {{resource_name}} = sequelize.define(resource_name, {{model_attributes}})
 
 {{resource_name}}.sync()
 

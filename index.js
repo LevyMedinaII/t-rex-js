@@ -14,7 +14,7 @@ program.version(pkg.version)
 
 program.command('create').action(create)
 program.command('add').action(add)
-// program.command('generate').action(generate)
+program.command('generate').action(generate)
 program.command('install').action(install)
 program.command('run').action(run)
 

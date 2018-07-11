@@ -66,15 +66,34 @@ t-rex add
 The `add` command creates the ff:
 - A resource located in the `/resources/<resource_name>` folder containing a dummy model for the resource
 - A react component in `/client/src/components` which displays all instances of the model associated with the resource  
+- The resource is then incorporated into the app via `/resources/index.js`
   
-NOTE: If there is no valid `db_url` in `config.json`, running your application after adding a resource causes the Express server to crash.
+NOTES:  
+- If there is no valid `db_url` in `config.json`, running your application after adding a resource causes the Express server to crash.
+- The add command's generated `resource.js` and `model.js` requires the user to insert model attributes (To be fixed)
 
-
-## Future Developments
-1. `add` creates selected resources (GET, DELETE, POST, UPDATE)
-2. Create and run test cases
-3. `delete` resource command
-4. Client template interfaces for resources
+### Generating resources from generate.json
+```
+t-rex generate
+```
+The `generate` command creates resources depending on the contents of `generate.json`.  
+Format of generate.json:
+```
+// generate.json
+{
+  "resources": {
+    "<resource_name>": {
+      "socket": <boolean>,
+      "methods": [<GET/POST/PUT/DELETE>],
+      "attributes": {
+        "<attribute>": "<sequelize_data_type>",
+        ...
+      }
+    },
+    ...
+  }
+}
+```
 
 ## Contact Details
 Name: Levy V. Medina II  

@@ -1,0 +1,5 @@
+router.delete('/:id', async (req, res) => {
+    let resource = await {{resource_name}}.findOne({ id })
+    
+    res.send( resource.delete({ paranoid: true }) )
+  })
