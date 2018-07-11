@@ -16,6 +16,15 @@ module.exports = (IO) => {
 		{ location: require('./user/user'), path: '/user'},
 		{ location: require('./user/user'), path: '/user'},
 		{ location: require('./user/user'), path: '/user'},
+		{ location: require('./user/user'), path: '/user'},
+		{ location: require('./user/user'), path: '/user'},
+		{ location: require('./user/user'), path: '/user'},
+		{ location: require('./user/user'), path: '/user'},
+		{ location: require('./user/user'), path: '/user'},
+		{ location: require('./user/user'), path: '/user'},
+		{ location: require('./user/user'), path: '/user'},
+		{ location: require('./user/user'), path: '/user'},
+		{ location: require('./user/user'), path: '/user'},
 		//INSERTION
   ]
 }
