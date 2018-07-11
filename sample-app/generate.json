@@ -1,0 +1,12 @@
+{
+  "resources": {
+    "user": {
+      "socket": true,
+      "methods": ["GET", "POST", "PUT"],
+      "attributes": {
+        "name": "INTEGER",
+        "id_number": "STRING" 
+      }
+    } 
+  }
+}
