@@ -11,13 +11,12 @@ let generate = () => {
     let generatePath = `${process.cwd()}/generate.json`
     let resources = ResourceGenerator.createResourcesFromPath(generatePath)
     
-    resources.map(resource => {
-      ResourceGenerator.writeResource(resource)
-      console.log(chalk.bgGreen(chalk.bold(' CREATE ')), `/resources/${resource.name}/${resource.name}.js`)
-      console.log(chalk.bgGreen(chalk.bold(' CREATE ')), `/resources/${resource.name}/model.js`)
-    })
+    resources.map(resource => ResourceGenerator.writeResource(resource))
   } catch (e) {
-    console.log(chalk.bgRed(chalk.bold(' ERROR ')), e)
+    if (e.message)
+      console.log(chalk.bgRed(chalk.bold(' ERROR ')), e.message)
+    else
+      console.log(chalk.bgRed(chalk.bold(' ERROR ')), e)
   }
 }
 

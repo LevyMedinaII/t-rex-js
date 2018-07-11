@@ -1,5 +1,5 @@
 router.post('/', async (req, res) => {
-  {{resource_name}}.create({{attributes}})
-  
-  res.send('SUCCESS')
-})
+    {{resource_name}}.create({{attributes}})
+    
+    res.send('SUCCESS')
+  })
