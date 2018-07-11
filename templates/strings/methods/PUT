@@ -1,5 +1,6 @@
 router.put('/:id', async (req, res) => {
   let resource = await {{resource_name}}.findOne({ id: req.params.id })
-  resource.update({ {{attributes}} })
+  resource.update({{attributes}})
+  
   res.send('SUCCESS')
 })

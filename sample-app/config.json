@@ -1,6 +1,0 @@
-{
-  "host": "http://localhost",
-  "backend_port": "5001",
-  "frontend_port": "8080",
-  "db_url": ""
-}
