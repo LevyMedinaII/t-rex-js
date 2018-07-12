@@ -2,6 +2,8 @@ const chalk = require('chalk')
 const fse = require('fs-extra')
 let createInquirer = require('./inquirer')
 
+require(`${__dirname}/../../lib/common.js`)()
+
 let create = async () => {
   let answers = await createInquirer()
   let projName = answers.name
@@ -75,7 +77,7 @@ let generateReactPackageJson = (config) => {
     'description': `${config.projDescription}`,
     'private': true,
     'proxy': 'http://localhost:5001',
-    'main': './src/App.js',
+    'main': 'index.js',
     'scripts': {
       'start': 'webpack-dev-server --mode development --open --hot',
       'build': 'webpack --mode production'
@@ -117,31 +119,6 @@ let printSuccessMessage = (projName, answers) => {
   console.log(chalk.grey('Project Name:'), answers.name)
   console.log(chalk.grey('Project Version:'), answers.version)
   console.log(chalk.grey('Project Description:'), answers.description)
-}
-
-let replaceString = (file, target, value) => {
-  try {
-    let data = fse.readFileSync(file, 'utf8')
-    let result = data.replace(target, value)
-    fse.writeFileSync(file, result, 'utf8')
-  } catch (err) {
-    throw err
-  }
-}
-
-let writeJsonWithDisplay = (location, obj) => {
-  fse.writeJsonSync(location, obj, { spaces: 4 })
-  console.log(chalk.bgGreen(chalk.bold(' CREATE ')), location)
-}
-
-let copyWithDisplay = (target, endpoint) => {
-  fse.copySync(target, endpoint)
-  console.log(chalk.bgGreen(chalk.bold(' CREATE ')), endpoint)
-}
-
-let createDirectoryWithDisplay = (path) => {
-  fse.ensureDirSync(path)
-  console.log(chalk.bgGreen(chalk.bold(' CREATE ')), path)
 }
 
 module.exports = create

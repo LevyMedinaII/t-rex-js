@@ -41,6 +41,8 @@ const QUESTIONS = [
 
 module.exports = async () => {
   let answers = await inquirer.prompt(QUESTIONS)
+  console.log()
   answers.name = answers.name.toLowerCase()
+
   return answers
 }
