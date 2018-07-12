@@ -1,6 +1,5 @@
 const chalk = require('chalk')
 const fse = require('fs-extra')
-const moment = require('moment')
 let createInquirer = require('./inquirer')
 
 let create = async () => {
@@ -76,7 +75,7 @@ let generateReactPackageJson = (config) => {
     'description': `${config.projDescription}`,
     'private': true,
     'proxy': 'http://localhost:5001',
-    'main': 'index.js',
+    'main': './src/App.js',
     'scripts': {
       'start': 'webpack-dev-server --mode development --open --hot',
       'build': 'webpack --mode production'
