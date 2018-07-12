@@ -46,8 +46,6 @@ describe('Class::Resource', () => {
     })
   })
 
-
-
   describe('GET isSocket', () => {
     it('should return the isSocket property of class Resource', () => {
       let expected = true
