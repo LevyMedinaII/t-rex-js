@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin")
 const config = require("./../config.json")
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
-  template: "./src/index.html",
+  template: "./public/index.html",
   filename: "./index.html"
 })
 
@@ -20,10 +20,11 @@ module.exports = {
       }
     }
   },
+  entry: './src/App.js',
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"

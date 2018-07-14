@@ -39,5 +39,6 @@ const QUESTIONS = [
 
 module.exports = async () => {
   let answers = await inquirer.prompt(QUESTIONS)
+  console.log()
   return answers
 }
