@@ -55,4 +55,44 @@ describe('Class::Resource', () => {
       expect((result).should.equal(expected))
     })
   })
+  
+  describe('SET name', () => {
+    it('should edit the name property of class Resource', () => {
+      let expected = 'hello'
+
+      resource.name = 'hello'
+
+      expect((resource.name).should.equal(expected))
+    })
+  })
+
+  describe('SET methods', () => {
+    it('should edit the methods property of class Resource', () => {
+      let expected = ['SET', 'DELETE']
+
+      resource.methods = ['SET', 'DELETE']
+
+      expect((resource.methods).should.deep.equal(expected))
+    })
+  })
+
+  describe('SET attributes', () => {
+    it('should edit the attributes property of class Resource', () => {
+      let expected = [{ name: 'name', type: 'STRING'}, { name: 'age', type: 'INTEGER' }]
+
+      resource.attributes = { name: 'STRING', age: 'INTEGER' }
+
+      expect((resource.attributes).should.deep.equal(expected))
+    })
+  })
+
+  describe('SET isSocket', () => {
+    it('should edit the isSocket property of class Resource', () => {
+      let expected = true
+
+      resource.isSocket = true
+
+      expect((resource.isSocket).should.equal(expected))
+    })
+  })
 })

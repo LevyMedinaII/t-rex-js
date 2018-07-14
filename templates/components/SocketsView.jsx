@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import socketIOClient from 'socket.io-client'
-import * as config from './../../config.json'
+import * as config from './../../../config.json'
 
 class {{component_name}} extends Component {
   constructor(props) {
