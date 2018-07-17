@@ -8,10 +8,9 @@ const path = require('path')
  */
 let install = () => {
   const { exec } = require( 'child_process' )
-  const child = exec('yarn\ncd client\nyarn')
+  const child = exec('npm install\ncd client\nnpm install')
 
   console.log(chalk.green('Installing project dependencies...'))
-  
   // Misc function for twirling in console
   let twirlTimer = (() => {
     let P = ["\\", "|", "/", "-"]
@@ -24,13 +23,12 @@ let install = () => {
   
   child.stdout.on('data', data => console.log(chalk.green.bold('STDOUT:'), data) )
   child.stderr.on('data', data => console.log(chalk.yellow.bold('STDERR:'), data) )
-
+  
   child.on('close', code => {
     console.log(chalk.grey.bold('CLOSING CODE:'), code)
     clearInterval(twirlTimer)
   })
 }
-
 
 
 module.exports = install
