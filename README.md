@@ -38,9 +38,9 @@ t-rex install
 ```
 Installs all required packages for both the server and a client. This command is a macro for the following:
 ```
-yarn install
+npm install
 cd client
-yarn install
+npm install
 ```
 This command is currently available only in the root directory of the project.
 
